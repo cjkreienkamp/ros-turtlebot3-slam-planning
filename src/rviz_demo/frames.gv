@@ -1,0 +1,8 @@
+digraph G {
+"base_link" -> "seat"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "wheel"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 25.203\nBuffer length: 4.92\nMost recent transform: 5.115\nOldest transform: 0.195\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 5.159"[ shape=plaintext ] ;
+}->"base_link";
+}

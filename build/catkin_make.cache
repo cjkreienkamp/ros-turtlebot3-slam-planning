@@ -1,0 +1,2 @@
+rviz_demo
+-DCATKIN_DEVEL_PREFIX=/home/home/code/rviz_demo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/home/code/rviz_demo_ws/install -G Unix Makefiles
