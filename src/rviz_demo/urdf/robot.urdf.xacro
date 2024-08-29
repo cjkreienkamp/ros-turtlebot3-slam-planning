@@ -4,7 +4,7 @@
   <xacro:property name="robot_side" value="0.3" />
   <xacro:property name="lidar_radius" value="0.06" />
   <xacro:property name="lidar_height" value="0.12" />
-  <xacro:property name="wheeldiam" value="0.07" />
+  <xacro:property name="wheeldiam" value="0.14" />
   <xacro:property name="pi" value="3.1415" />
 
   <material name="blue">
@@ -29,21 +29,48 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="${robot_side} ${robot_side} ${robot_side/2}"/>
+        <box size="${robot_side*2} ${robot_side} ${robot_side/2}"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <geometry>
-        <box size="${robot_side} ${robot_side} ${robot_side/2}"/>
+        <box size="${robot_side*2} ${robot_side} ${robot_side/2}"/>
       </geometry>
     </collision>
     <xacro:default_inertial mass="30"/>
   </link>
 
-  <xacro:macro name="wheel" params="rl fb rl_reflect fb_reflect">
+	<link name="back_wheel">
+		<visual>
+			<geometry>
+				<sphere radius="${wheeldiam/2}"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<sphere radius="${wheeldiam/2}"/>
+			</geometry>
+		</collision>
+		<xacro:default_inertial mass="1"/>
+	</link>
+	<joint name="base_to_back_wheel" type="continuous">
+  	<axis xyz="0 1 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="back_wheel"/>
+    <origin xyz="-${2*robot_side/3} 0 -${robot_side/4}" rpy="0 0 0"/>
+  </joint>
+  <gazebo reference="back_wheel">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+    <material>Gazebo/Grey</material>
+  </gazebo>
 
-    <link name="${rl}_${fb}_wheel">
+  <xacro:macro name="wheel" params="rl rl_reflect">
+
+    <link name="${rl}_wheel">
       <visual>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
         <geometry>
@@ -59,14 +86,14 @@
       </collision>
       <xacro:default_inertial mass="1"/>
     </link>
-    <joint name="${rl}_${fb}_wheel_joint" type="continuous">
+    <joint name="${rl}_wheel_joint" type="continuous">
       <axis xyz="0 1 0" rpy="0 0 0" />
       <parent link="base_link"/>
-      <child link="${rl}_${fb}_wheel"/>
-      <origin xyz="${robot_side/3*fb_reflect} ${robot_side/3*rl_reflect} -${wheeldiam/2+.05}" rpy="0 0 0"/>
+      <child link="${rl}_wheel"/>
+      <origin xyz="${robot_side/2} ${rl_reflect*robot_side/2} -${robot_side/4}" rpy="0 0 0"/>
     </joint>
 
-    <gazebo reference="${rl}_${fb}_wheel">
+    <gazebo reference="${rl}_wheel">
       <mu1 value="200.0"/>
       <mu2 value="100.0"/>
       <kp value="10000000.0" />
@@ -74,20 +101,18 @@
       <material>Gazebo/Grey</material>
     </gazebo>
 
-    <transmission name="${rl}_${fb}_wheel_trans">
+    <transmission name="${rl}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <actuator name="${rl}_${fb}_wheel_motor">
+      <actuator name="${rl}_wheel_motor">
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
-      <joint name="${rl}_${fb}_wheel_joint">
+      <joint name="${rl}_wheel_joint">
         <hardwareInterface>VelocityJointInterface</hardwareInterface>
       </joint>
     </transmission>
   </xacro:macro>
-	<xacro:wheel rl="right" fb="front" rl_reflect="1" fb_reflect="1"/>
-	<xacro:wheel rl="right" fb="back" rl_reflect="1" fb_reflect="-1"/>
-	<xacro:wheel rl="left" fb="front" rl_reflect="-1" fb_reflect="1"/>
-	<xacro:wheel rl="left" fb="back" rl_reflect="-1" fb_reflect="-1"/>
+	<xacro:wheel rl="right"  rl_reflect="1"/>
+	<xacro:wheel rl="left" rl_reflect="-1"/>
 	
   <link name="lidar">
     <visual>
