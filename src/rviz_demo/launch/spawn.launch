@@ -8,16 +8,12 @@
   <rosparam command="load"
             file="$(find rviz_demo)/config/joints.yaml"
             ns="r2d2_joint_state_controller" />
-  <rosparam command="load"
-            file="$(find rviz_demo)/config/head.yaml"
-            ns="r2d2_head_controller" />
 	<rosparam command="load"
             file="$(find rviz_demo)/config/diffdrive.yaml"
             ns="r2d2_diff_drive_controller" />
 
   <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
     args="r2d2_joint_state_controller
-          r2d2_head_controller
 					r2d2_diff_drive_controller
           --shutdown-timeout 3"/>
 

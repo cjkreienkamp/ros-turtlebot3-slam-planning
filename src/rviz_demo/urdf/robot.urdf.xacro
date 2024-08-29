@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <robot name="roscontrol" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="width" value="0.2" />
-  <xacro:property name="leglen" value="0.6" />
-  <xacro:property name="polelen" value="0.2" />
-  <xacro:property name="bodylen" value="0.6" />
-  <xacro:property name="baselen" value="0.4" />
+  <xacro:property name="robot_side" value="0.3" />
+  <xacro:property name="lidar_radius" value="0.06" />
+  <xacro:property name="lidar_height" value="0.12" />
   <xacro:property name="wheeldiam" value="0.07" />
   <xacro:property name="pi" value="3.1415" />
 
@@ -31,46 +29,44 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <cylinder radius="${width}" length="${bodylen}"/>
+        <box size="${robot_side} ${robot_side} ${robot_side/2}"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="${width}" length="${bodylen}"/>
+        <box size="${robot_side} ${robot_side} ${robot_side/2}"/>
       </geometry>
     </collision>
-    <xacro:default_inertial mass="10"/>
+    <xacro:default_inertial mass="30"/>
   </link>
 
-  <xacro:macro name="wheel" params="prefix suffix reflect">
+  <xacro:macro name="wheel" params="rl fb rl_reflect fb_reflect">
 
-    <link name="${prefix}_${suffix}_wheel">
+    <link name="${rl}_${fb}_wheel">
       <visual>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
         <geometry>
-          <cylinder radius="${wheeldiam/2}" length="0.1"/>
+          <cylinder radius="${wheeldiam/2}" length="${wheeldiam/4}"/>
         </geometry>
         <material name="black"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
         <geometry>
-          <cylinder radius="${wheeldiam/2}" length="0.1"/>
+          <cylinder radius="${wheeldiam/2}" length="${wheeldiam/4}"/>
         </geometry>
       </collision>
       <xacro:default_inertial mass="1"/>
     </link>
-    <joint name="${prefix}_${suffix}_wheel_joint" type="continuous">
+    <joint name="${rl}_${fb}_wheel_joint" type="continuous">
       <axis xyz="0 1 0" rpy="0 0 0" />
-      <parent link="${prefix}_base"/>
-      <child link="${prefix}_${suffix}_wheel"/>
-      <origin xyz="${baselen*reflect/3} 0 -${wheeldiam/2+.05}" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="${rl}_${fb}_wheel"/>
+      <origin xyz="${robot_side/3*fb_reflect} ${robot_side/3*rl_reflect} -${wheeldiam/2+.05}" rpy="0 0 0"/>
     </joint>
 
-    <!-- This block provides the simulator (Gazebo) with information on a few additional
-    physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
-    <gazebo reference="${prefix}_${suffix}_wheel">
+    <gazebo reference="${rl}_${fb}_wheel">
       <mu1 value="200.0"/>
       <mu2 value="100.0"/>
       <kp value="10000000.0" />
@@ -78,123 +74,38 @@
       <material>Gazebo/Grey</material>
     </gazebo>
 
-    <!-- This block connects the wheel joint to an actuator (motor), which informs both
-    simulation and visualization of the robot -->
-    <transmission name="${prefix}_${suffix}_wheel_trans">
+    <transmission name="${rl}_${fb}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <actuator name="${prefix}_${suffix}_wheel_motor">
+      <actuator name="${rl}_${fb}_wheel_motor">
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
-      <joint name="${prefix}_${suffix}_wheel_joint">
+      <joint name="${rl}_${fb}_wheel_joint">
         <hardwareInterface>VelocityJointInterface</hardwareInterface>
       </joint>
     </transmission>
-
   </xacro:macro>
-
-  <xacro:macro name="leg" params="prefix reflect">
-    <link name="${prefix}_leg">
-      <visual>
-        <geometry>
-          <box size="${leglen} 0.1 0.2"/>
-        </geometry>
-        <origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
-        <material name="white"/>
-      </visual>
-      <collision>
-        <geometry>
-          <box size="${leglen} 0.1 0.2"/>
-        </geometry>
-        <origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
-      </collision>
-      <xacro:default_inertial mass="10"/>
-    </link>
-
-    <joint name="base_to_${prefix}_leg" type="fixed">
-      <parent link="base_link"/>
-      <child link="${prefix}_leg"/>
-      <origin xyz="0 ${reflect*(width+.02)} 0.25" />
-    </joint>
-
-    <link name="${prefix}_base">
-      <visual>
-        <geometry>
-          <box size="${baselen} 0.1 0.1"/>
-        </geometry>
-        <material name="white"/>
-      </visual>
-      <collision>
-        <geometry>
-          <box size="${baselen} 0.1 0.1"/>
-        </geometry>
-      </collision>
-      <xacro:default_inertial mass="10"/>
-    </link>
-
-    <joint name="${prefix}_base_joint" type="fixed">
-      <parent link="${prefix}_leg"/>
-      <child link="${prefix}_base"/>
-      <origin xyz="0 0 ${-leglen}" />
-    </joint>
-    <xacro:wheel prefix="${prefix}" suffix="front" reflect="1"/>
-    <xacro:wheel prefix="${prefix}" suffix="back" reflect="-1"/>
-  </xacro:macro>
-  <xacro:leg prefix="right" reflect="-1" />
-  <xacro:leg prefix="left" reflect="1" />
-
-  <link name="head">
+	<xacro:wheel rl="right" fb="front" rl_reflect="1" fb_reflect="1"/>
+	<xacro:wheel rl="right" fb="back" rl_reflect="1" fb_reflect="-1"/>
+	<xacro:wheel rl="left" fb="front" rl_reflect="-1" fb_reflect="1"/>
+	<xacro:wheel rl="left" fb="back" rl_reflect="-1" fb_reflect="-1"/>
+	
+  <link name="lidar">
     <visual>
       <geometry>
-        <sphere radius="${width}"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <sphere radius="${width}"/>
-      </geometry>
-    </collision>
-    <xacro:default_inertial mass="2"/>
-  </link>
-
-  <joint name="head_swivel" type="continuous">
-    <parent link="base_link"/>
-    <child link="head"/>
-    <axis xyz="0 0 1"/>
-    <origin xyz="0 0 ${bodylen/2}"/>
-    <limit effort="30" velocity="1.0"/>
-    <dynamics damping="0.0" friction="0.0"/>
-  </joint>
-
-  <!-- This block connects the head_swivel joint to an actuator (motor), which informs both
-  simulation and visualization of the robot -->
-  <transmission name="head_swivel_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <actuator name="$head_swivel_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-    <joint name="head_swivel">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
-    </joint>
-  </transmission>
-
-  <link name="laser_frame">
-    <visual>
-      <geometry>
-        <box size="0.08 0.08 0.08"/>
+        <cylinder radius="${lidar_radius}" length="${lidar_height}" />
       </geometry>
       <material name="blue"/>
-      <origin xyz="-0.04 0 0"/>
+      <origin xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.08 0.08 0.08"/>
+        <cylinder radius="${lidar_radius}" length="${lidar_height}" />
       </geometry>
     </collision>
     <xacro:default_inertial mass="1"/>
   </link>
 
-	<gazebo reference="laser_frame">
+	<gazebo reference="lidar">
 		<sensor name="laser" type="ray">
 			<pose>0 0 0 0 0 0</pose>
 			<visualize>true</visualize>
@@ -216,18 +127,17 @@
 			</ray>
 			<plugin name="laser_controller" filename="libgazebo_ros_laser.so">
 				<topicName>/scan</topicName>
-				<frameName>laser_frame</frameName>
+				<frameName>lidar</frameName>
 			</plugin>
 		</sensor>
 	</gazebo>
   
-	<joint name="head_to_laser_frame" type="fixed">
-    <parent link="head"/>
-    <child link="laser_frame"/>
-    <origin xyz="${.707*width+0.04} 0 ${.707*width}"/>
+	<joint name="base_to_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0 0 ${(robot_side/2+lidar_height)/2}"/>
   </joint>
 
-  <!-- Gazebo plugin for ROS Control -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
