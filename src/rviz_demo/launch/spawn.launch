@@ -5,20 +5,8 @@
     <arg name="model" value="$(find rviz_demo)/urdf/$(arg model)" />
   </include>
 
-  <rosparam command="load"
-            file="$(find rviz_demo)/config/joints.yaml"
-            ns="r2d2_joint_state_controller" />
-	<rosparam command="load"
-            file="$(find rviz_demo)/config/diffdrive.yaml"
-            ns="r2d2_diff_drive_controller" />
-
-  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
-    args="r2d2_joint_state_controller
-					r2d2_diff_drive_controller
-          --shutdown-timeout 3"/>
-
 	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-    <param name="default_topic" value="/r2d2_diff_drive_controller/cmd_vel"/>
+    <param name="default_topic" value="/cmd_vel"/>
   </node>
 
 </launch>

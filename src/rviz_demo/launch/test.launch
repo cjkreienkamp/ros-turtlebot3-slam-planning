@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="model" default="$(find rviz_demo)/urdf/robot.urdf.xacro"/>
+	<!--arg name="rvizconfig" default="$(find rviz_demo)/rviz/urdf.rviz"/-->
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find rviz_demo)/worlds/room1/world.model"/>
+  	</include>
+
+  	<!--param name="robot_description" command="xacro '$(arg model)'" /-->
+	
+	<!--node name="robot_spawner" pkg="gazebo_ros" type="spawn_model" args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" /-->
+
+  	<!--node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    	<param name="publish_frequency" type="double" value="30.0" />
+  	</node>
+  	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /-->
+
+</launch>

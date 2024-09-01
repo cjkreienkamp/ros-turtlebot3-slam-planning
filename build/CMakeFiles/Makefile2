@@ -150,12 +150,10 @@ rviz_demo/clean: rviz_demo/CMakeFiles/_catkin_empty_exported_target.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/run_tests_rviz_demo.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/_run_tests_rviz_demo.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/clean
-rviz_demo/clean: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_launch.dir/clean
-rviz_demo/clean: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/clean
 rviz_demo/clean: rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/clean
-rviz_demo/clean: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/clean
+rviz_demo/clean: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
 
 .PHONY : rviz_demo/clean
 
@@ -489,7 +487,6 @@ rviz_demo/CMakeFiles/_run_tests_rviz_demo.dir/clean:
 
 # All Build rule for target.
 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/all: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir/all
-rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/all: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/all
 	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/depend
 	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/home/code/rviz_demo_ws/build/CMakeFiles --progress-num= "Built target run_tests_rviz_demo_roslaunch-check"
@@ -511,34 +508,6 @@ run_tests_rviz_demo_roslaunch-check: rviz_demo/CMakeFiles/run_tests_rviz_demo_ro
 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/clean:
 	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/clean
 .PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check.dir/clean
-
-#=============================================================================
-# Target rules for target rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir
-
-# All Build rule for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_launch.dir/all
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/all
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/depend
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/home/code/rviz_demo_ws/build/CMakeFiles --progress-num= "Built target _run_tests_rviz_demo_roslaunch-check"
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all
-
-# Build rule for subdir invocation for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
-
-# Convenience name for target.
-_run_tests_rviz_demo_roslaunch-check: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
-
-.PHONY : _run_tests_rviz_demo_roslaunch-check
-
-# clean rule for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean:
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
 
 #=============================================================================
 # Target rules for target rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir
@@ -596,33 +565,6 @@ rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_launch.dir/clean:
 .PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_launch.dir/clean
 
 #=============================================================================
-# Target rules for target rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir
-
-# All Build rule for target.
-rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/all:
-	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/depend
-	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/home/code/rviz_demo_ws/build/CMakeFiles --progress-num= "Built target run_tests_rviz_demo_roslaunch-check_config"
-.PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/all
-
-# Build rule for subdir invocation for target.
-rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-.PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule
-
-# Convenience name for target.
-run_tests_rviz_demo_roslaunch-check_config: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule
-
-.PHONY : run_tests_rviz_demo_roslaunch-check_config
-
-# clean rule for target.
-rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/clean:
-	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/clean
-.PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/clean
-
-#=============================================================================
 # Target rules for target rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir
 
 # All Build rule for target.
@@ -650,32 +592,31 @@ rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/clean:
 .PHONY : rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/clean
 
 #=============================================================================
-# Target rules for target rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir
+# Target rules for target rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir
 
 # All Build rule for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/all: CMakeFiles/tests.dir/all
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/all: rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/all
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/depend
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/home/code/rviz_demo_ws/build/CMakeFiles --progress-num= "Built target _run_tests_rviz_demo_roslaunch-check_config"
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/all
+rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_launch.dir/all
+	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/depend
+	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/home/code/rviz_demo_ws/build/CMakeFiles --progress-num= "Built target _run_tests_rviz_demo_roslaunch-check"
+.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all
 
 # Build rule for subdir invocation for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule: cmake_check_build_system
+rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/home/code/rviz_demo_ws/build/CMakeFiles 0
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule
+.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
 
 # Convenience name for target.
-_run_tests_rviz_demo_roslaunch-check_config: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule
+_run_tests_rviz_demo_roslaunch-check: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
 
-.PHONY : _run_tests_rviz_demo_roslaunch-check_config
+.PHONY : _run_tests_rviz_demo_roslaunch-check
 
 # clean rule for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/clean:
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/clean
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/clean
+rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean:
+	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
+.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

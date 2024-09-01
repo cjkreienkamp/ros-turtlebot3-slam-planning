@@ -7,9 +7,8 @@ catkin_package()
 if(CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
   roslaunch_add_file_check(launch)
-	roslaunch_add_file_check(config)
 endif()
 
-install(DIRECTORY config launch rviz urdf
+install(DIRECTORY worlds config launch rviz urdf
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

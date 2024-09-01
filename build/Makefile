@@ -337,19 +337,6 @@ run_tests_rviz_demo_roslaunch-check/fast:
 .PHONY : run_tests_rviz_demo_roslaunch-check/fast
 
 #=============================================================================
-# Target rules for targets named _run_tests_rviz_demo_roslaunch-check
-
-# Build rule for target.
-_run_tests_rviz_demo_roslaunch-check: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_rviz_demo_roslaunch-check
-.PHONY : _run_tests_rviz_demo_roslaunch-check
-
-# fast build rule for target.
-_run_tests_rviz_demo_roslaunch-check/fast:
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
-.PHONY : _run_tests_rviz_demo_roslaunch-check/fast
-
-#=============================================================================
 # Target rules for targets named run_tests_rviz_demo_roslaunch-check_launch
 
 # Build rule for target.
@@ -376,19 +363,6 @@ _run_tests_rviz_demo_roslaunch-check_launch/fast:
 .PHONY : _run_tests_rviz_demo_roslaunch-check_launch/fast
 
 #=============================================================================
-# Target rules for targets named run_tests_rviz_demo_roslaunch-check_config
-
-# Build rule for target.
-run_tests_rviz_demo_roslaunch-check_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_rviz_demo_roslaunch-check_config
-.PHONY : run_tests_rviz_demo_roslaunch-check_config
-
-# fast build rule for target.
-run_tests_rviz_demo_roslaunch-check_config/fast:
-	$(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build
-.PHONY : run_tests_rviz_demo_roslaunch-check_config/fast
-
-#=============================================================================
 # Target rules for targets named clean_test_results_rviz_demo
 
 # Build rule for target.
@@ -402,17 +376,17 @@ clean_test_results_rviz_demo/fast:
 .PHONY : clean_test_results_rviz_demo/fast
 
 #=============================================================================
-# Target rules for targets named _run_tests_rviz_demo_roslaunch-check_config
+# Target rules for targets named _run_tests_rviz_demo_roslaunch-check
 
 # Build rule for target.
-_run_tests_rviz_demo_roslaunch-check_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_rviz_demo_roslaunch-check_config
-.PHONY : _run_tests_rviz_demo_roslaunch-check_config
+_run_tests_rviz_demo_roslaunch-check: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_rviz_demo_roslaunch-check
+.PHONY : _run_tests_rviz_demo_roslaunch-check
 
 # fast build rule for target.
-_run_tests_rviz_demo_roslaunch-check_config/fast:
-	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build
-.PHONY : _run_tests_rviz_demo_roslaunch-check_config/fast
+_run_tests_rviz_demo_roslaunch-check/fast:
+	$(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
+.PHONY : _run_tests_rviz_demo_roslaunch-check/fast
 
 # Help Target
 help:
@@ -440,12 +414,10 @@ help:
 	@echo "... run_tests_rviz_demo"
 	@echo "... _run_tests_rviz_demo"
 	@echo "... run_tests_rviz_demo_roslaunch-check"
-	@echo "... _run_tests_rviz_demo_roslaunch-check"
 	@echo "... run_tests_rviz_demo_roslaunch-check_launch"
 	@echo "... _run_tests_rviz_demo_roslaunch-check_launch"
-	@echo "... run_tests_rviz_demo_roslaunch-check_config"
 	@echo "... clean_test_results_rviz_demo"
-	@echo "... _run_tests_rviz_demo_roslaunch-check_config"
+	@echo "... _run_tests_rviz_demo_roslaunch-check"
 .PHONY : help
 
 

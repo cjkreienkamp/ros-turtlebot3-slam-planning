@@ -68,28 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -134,6 +112,28 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -228,21 +228,6 @@ run_tests_rviz_demo_roslaunch-check/fast:
 .PHONY : run_tests_rviz_demo_roslaunch-check/fast
 
 # Convenience name for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
-
-# Convenience name for target.
-_run_tests_rviz_demo_roslaunch-check: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
-
-.PHONY : _run_tests_rviz_demo_roslaunch-check
-
-# fast build rule for target.
-_run_tests_rviz_demo_roslaunch-check/fast:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
-.PHONY : _run_tests_rviz_demo_roslaunch-check/fast
-
-# Convenience name for target.
 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir/rule:
 	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir/rule
 .PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_launch.dir/rule
@@ -273,21 +258,6 @@ _run_tests_rviz_demo_roslaunch-check_launch/fast:
 .PHONY : _run_tests_rviz_demo_roslaunch-check_launch/fast
 
 # Convenience name for target.
-rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule
-.PHONY : rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule
-
-# Convenience name for target.
-run_tests_rviz_demo_roslaunch-check_config: rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/rule
-
-.PHONY : run_tests_rviz_demo_roslaunch-check_config
-
-# fast build rule for target.
-run_tests_rviz_demo_roslaunch-check_config/fast:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/run_tests_rviz_demo_roslaunch-check_config.dir/build
-.PHONY : run_tests_rviz_demo_roslaunch-check_config/fast
-
-# Convenience name for target.
 rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/rule:
 	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/rule
 .PHONY : rviz_demo/CMakeFiles/clean_test_results_rviz_demo.dir/rule
@@ -303,19 +273,19 @@ clean_test_results_rviz_demo/fast:
 .PHONY : clean_test_results_rviz_demo/fast
 
 # Convenience name for target.
-rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule
-.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule
+rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule:
+	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
+.PHONY : rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
 
 # Convenience name for target.
-_run_tests_rviz_demo_roslaunch-check_config: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/rule
+_run_tests_rviz_demo_roslaunch-check: rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/rule
 
-.PHONY : _run_tests_rviz_demo_roslaunch-check_config
+.PHONY : _run_tests_rviz_demo_roslaunch-check
 
 # fast build rule for target.
-_run_tests_rviz_demo_roslaunch-check_config/fast:
-	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check_config.dir/build
-.PHONY : _run_tests_rviz_demo_roslaunch-check_config/fast
+_run_tests_rviz_demo_roslaunch-check/fast:
+	cd /home/home/code/rviz_demo_ws/build && $(MAKE) -f rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build.make rviz_demo/CMakeFiles/_run_tests_rviz_demo_roslaunch-check.dir/build
+.PHONY : _run_tests_rviz_demo_roslaunch-check/fast
 
 # Help Target
 help:
@@ -324,22 +294,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... list_install_components"
+	@echo "... install/local"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... run_tests_rviz_demo"
 	@echo "... _run_tests_rviz_demo"
 	@echo "... run_tests_rviz_demo_roslaunch-check"
-	@echo "... install"
-	@echo "... _run_tests_rviz_demo_roslaunch-check"
 	@echo "... run_tests_rviz_demo_roslaunch-check_launch"
 	@echo "... _run_tests_rviz_demo_roslaunch-check_launch"
-	@echo "... install/local"
-	@echo "... run_tests_rviz_demo_roslaunch-check_config"
 	@echo "... clean_test_results_rviz_demo"
-	@echo "... _run_tests_rviz_demo_roslaunch-check_config"
 	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... _run_tests_rviz_demo_roslaunch-check"
+	@echo "... install"
 .PHONY : help
 
 

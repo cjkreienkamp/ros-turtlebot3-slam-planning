@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="map" default="$(find rviz_demo)/maps/turtlebot3.yaml"/>
+
+	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+
+	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map)"/>
+	
+	<node name="amcl" pkg="amcl" type="amcl">
+		<param name="initial_pose_x" value="0.0"/>
+		<param name="initial_pose_y" value="0.0"/>
+	</node>
+
+</launch>
+	

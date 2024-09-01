@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+	
+	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+
+	<node name="gmapping" pkg="gmapping" type="slam_gmapping"/>
+
+	<!-- when finished mapping, change to the /maps directory and run the following -->
+	<!-- rosrun map_server map_saver -f MAP_NAME -->
+
+</launch>
