@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <launch>
 	
-	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+	<include file="$(find rviz_demo)/launch/core.launch">
+		<arg name="rviz_config" value="$(find rviz_demo)/config/planning.rviz"/>
+	</include>
+	
+	 <!--node name="static_tf0" pkg="tf" type="static_transform_publisher" args="2 0 0 0 0 0 /map /base_footprint 100"/-->
 
 	<node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
 		<param name="base_global_planner" value="navfn/NavfnROS"/>
@@ -11,6 +15,7 @@
 
 		<rosparam file="$(find rviz_demo)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
 		<rosparam file="$(find rviz_demo)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+		<!--rosparam file="$(find rviz_demo)/param/minimal.yaml" command="load" ns="/costmap_node/costmap"/-->
 		<rosparam file="$(find rviz_demo)/param/local_costmap_params.yaml" command="load"/>
 		<rosparam file="$(find rviz_demo)/param/global_costmap_params.yaml" command="load"/>
 		<rosparam file="$(find rviz_demo)/param/base_local_planner_params.yaml" command="load"/>

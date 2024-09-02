@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	
-	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+	<include file="$(find rviz_demo)/launch/core.launch"/>
 
 	<node name="gmapping" pkg="gmapping" type="slam_gmapping"/>
 

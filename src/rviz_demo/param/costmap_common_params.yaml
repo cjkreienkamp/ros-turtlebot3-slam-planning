@@ -1,22 +1,22 @@
-map_type: costmap
-obstacle_range: 2.5
-raytrace_range: 3
-transform_tolerance: 0.2
+obstacle_range: 1.5
+raytrace_range: 2.0
+#transform_tolerance: 0.2
+footprint: [[-0.105, -0.105], [-0.105, 0.105], [0.041, 0.105], [0.041, -0.105]]
 #footprint:
-#  - - 0.2225
-#    - 0.2045
+#  - - 0.105
+#    - 0.105
 #  - - 0.2225
 #    - -0.2045
 #  - - -0.2225
 #    - -0.2045
 #  - - -0.2225
 #    - 0.2045
-robot_radius: 0.07
-inflation_radius: 0.10
+#robot_radius: 0.07
+inflation_radius: 0.30
 observation_sources: laser_scan_sensor
 laser_scan_sensor:
   sensor_frame: base_scan
   data_type: LaserScan
-  topic: /scan
+  topic: scan
   marking: true
   clearing: true

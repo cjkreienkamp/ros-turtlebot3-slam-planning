@@ -25,7 +25,7 @@
   	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
 	<!-- control: linear and angular movement -->
-	<rosparam command="load" 
+	<!--rosparam command="load" 
 		file="$(find rviz_demo)/config/joints.yaml"
 		ns="robot_joint_state_controller"/>
 	<rosparam command="load"
@@ -34,7 +34,7 @@
 	<node name="robot_controller_spawner" pkg="controller_manager" type="spawner"
 		args="robot_joint_state_controller
 			  robot_diff_drive_controller
-			  --shutdown-timeout 3"/>
+			  shutdown-timeout 3"/-->
 	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
 		<param name="default_topic" value="/cmd_vel"/>
 	</node>

@@ -3,7 +3,7 @@
 
 	<arg name="map" default="$(find rviz_demo)/maps/turtlebot3.yaml"/>
 
-	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+	<include file="$(find rviz_demo)/launch/core.launch"/>
 
 	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map)"/>
 	
