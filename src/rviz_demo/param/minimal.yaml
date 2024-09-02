@@ -1,9 +1,0 @@
-plugins:
-    - {name: static_map,       type: "costmap_2d::StaticLayer"}
-    - {name: obstacles,        type: "costmap_2d::VoxelLayer"}
-publish_frequency: 1.0
-footprint: [[-0.105, -0.105], [-0.105, 0.105], [0.041, 0.105], [0.041, -0.105]]
-inflation_radius: 0.4
-obstacles:
-    observation_sources: lidar_sensor
-    lidar_sensor: {data_type: LaserScan, sensor_frame: base_scan, clearing: true, marking: true, topic: scan}

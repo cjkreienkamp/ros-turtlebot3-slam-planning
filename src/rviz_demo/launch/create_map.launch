@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <launch>
 	
-	<include file="$(find rviz_demo)/launch/core.launch"/>
+	<arg name="world" default="worlds/turtlebot3_world.world"/>
+
+	<include file="$(find rviz_demo)/launch/core.launch">
+		<arg name="world" value="$(arg world)"/>
+		<arg name="rviz_config" value="$(find rviz_demo)/config/create_map.rviz"/>
+	</include>
 
 	<node name="gmapping" pkg="gmapping" type="slam_gmapping"/>
 

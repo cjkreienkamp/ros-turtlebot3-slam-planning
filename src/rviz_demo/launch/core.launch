@@ -1,15 +1,19 @@
 <?xml version="1.0"?>
 <launch>
 
-	<!-- input -->
 	<arg name="model" default="$(find rviz_demo)/urdf/turtlebot3_burger.urdf.xacro"/>
 	<arg name="world" default="worlds/turtlebot3_world.world"/>
-	<arg name="rviz_config" default="$(find rviz_demo)/config/config.rviz"/>
+	<arg name="rviz_config" default="$(find rviz_demo)/config/core.rviz"/>
 	<arg name="xinit" default="2.0"/>
 	<arg name="yinit" default="0.0"/>
 	<arg name="zinit" default="0.0"/>
 
+	<!-- robot information -->
   	<param name="robot_description" command="xacro '$(arg model)'" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    	<param name="publish_frequency" type="double" value="30.0" />
+  	</node>
+  	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 	
 	<!-- display: rviz and gazebo -->
   	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" required="true" />
@@ -18,23 +22,7 @@
   	</include>
 	<node name="robot_spawner" pkg="gazebo_ros" type="spawn_model" args="-x '$(arg xinit)' -y '$(arg yinit)' -z '$(arg zinit)' -urdf -model robot -param robot_description" respawn="false" output="screen" />
   
-	<!-- robot joint information -->
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-    	<param name="publish_frequency" type="double" value="30.0" />
-  	</node>
-  	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-
-	<!-- control: linear and angular movement -->
-	<!--rosparam command="load" 
-		file="$(find rviz_demo)/config/joints.yaml"
-		ns="robot_joint_state_controller"/>
-	<rosparam command="load"
-		file="$(find rviz_demo)/config/diffdrive.yaml"
-		ns="robot_diff_drive_controller"/>
-	<node name="robot_controller_spawner" pkg="controller_manager" type="spawner"
-		args="robot_joint_state_controller
-			  robot_diff_drive_controller
-			  shutdown-timeout 3"/-->
+	<!-- robot steering -->
 	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
 		<param name="default_topic" value="/cmd_vel"/>
 	</node>
