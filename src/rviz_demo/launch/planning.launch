@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+	
+	<include file="$(find rviz_demo)/launch/gazebo.launch"/>
+
+	<node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+		<param name="base_global_planner" value="navfn/NavfnROS"/>
+		<param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+		<param name="recovery_behavior_enabled" value="true"/>
+		<param name="controller_frequency" value="1.0"/>
+
+		<rosparam file="$(find rviz_demo)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+		<rosparam file="$(find rviz_demo)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+		<rosparam file="$(find rviz_demo)/param/local_costmap_params.yaml" command="load"/>
+		<rosparam file="$(find rviz_demo)/param/global_costmap_params.yaml" command="load"/>
+		<rosparam file="$(find rviz_demo)/param/base_local_planner_params.yaml" command="load"/>
+
+		<!--rosparam file="$(find rviz_demo)/param/dwa_local_planner_params.yaml" command="load"/>
+		<rosparam file="$(find rviz_demo)/param/navfn_global_planner_params.yaml" command="load"/>
+		
+		<param name="global_costmap/global_frame" value="map"/>
+		<param name="global_costmap/robot_base_frame" value="base_footprint"/>
+		<param name="local_costmap/global_frame" value="odom"/>
+		<param name="local_costmap/robot_base_frame" value="base_footprint"/>
+		<param name="global_costmap/global_frame_id" value="odom"/-->
+	</node>
+
+</launch>
