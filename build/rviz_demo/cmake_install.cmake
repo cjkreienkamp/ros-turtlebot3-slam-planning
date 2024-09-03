@@ -52,13 +52,3 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rviz_demo" TYPE FILE FILES "/home/home/code/rviz_demo_ws/src/rviz_demo/package.xml")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rviz_demo" TYPE DIRECTORY FILES
-    "/home/home/code/rviz_demo_ws/src/rviz_demo/worlds"
-    "/home/home/code/rviz_demo_ws/src/rviz_demo/config"
-    "/home/home/code/rviz_demo_ws/src/rviz_demo/launch"
-    "/home/home/code/rviz_demo_ws/src/rviz_demo/rviz"
-    "/home/home/code/rviz_demo_ws/src/rviz_demo/urdf"
-    )
-endif()
-
