@@ -36,8 +36,8 @@ The following steps are the progression of an autonomous robot moving from an in
 ### Literature Review
 
 The following Git repositories were used in part or fully integrated into this project.
-- [ROBOTIS-GIT/turtlebot3/turtlebot3_description/urdf](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_description/urdf) --> turtlebot3_burger urdf files to create the model of the robot
-- [ROBOTIS-GIT/turtlebot3_simulations/turtlebot3_gazebo](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/master/turtlebot3_gazebo) --> turtlebot3 world files to create the world in Gazebo
+- [ROBOTIS-GIT/turtlebot3/turtlebot3_description/urdf](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_description/urdf) --> urdf files to create the turtlebot3_burger model of the robot
+- [ROBOTIS-GIT/turtlebot3_simulations/turtlebot3_gazebo](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/master/turtlebot3_gazebo) --> world files to create the turtlebot3 world in Gazebo
 - [dbloisi/turtlebot3_navigation_goals](https://github.com/dbloisi/turtlebot3_navigation_goals/blob/master/src/turtlebot3_navigation_goals.cpp) --> cpp file to send a goal location to the robot
 
 
@@ -46,18 +46,18 @@ The following Git repositories were used in part or fully integrated into this p
 
 The following section is divided into the basic parts of the program (initialization, mapping, localization, planning). It describes how to compile, run, and test. Later steps can only be accomplished if prior steps were completed successfully.
 
-1) INITIALIZATION: download code, compile with catkin, view robot and world in Gazebo, view robot and lidar sensor data in RViz, make the robot move
+#### INITIALIZATION: download code, compile with catkin, view robot and world in Gazebo, view robot and lidar sensor data in RViz, make the robot move
 
 ```
 mkdir -p catkin_ws/src
 roslaunch rviz_demo core.launch world:="worlds/turtlebot3_world.world"
 ```
 
-2) MAPPING
+#### MAPPING
 
-3) LOCALIZATION
+#### LOCALIZATION
 
-4) PLANNING
+#### PLANNING
 
 
 
