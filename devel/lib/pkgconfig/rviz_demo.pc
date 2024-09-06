@@ -1,8 +1,0 @@
-prefix=/home/home/code/rviz_demo_ws/devel
-
-Name: rviz_demo
-Description: Description of rviz_demo
-Version: 0.5.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
