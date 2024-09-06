@@ -66,6 +66,7 @@ Expected output:
 - Gazebo opens with the turtlebot3 robot and the turtlebot3 world.
 - rqt_robot_steering window opens, and you can see the robot move in the world as you change its linear and angular speed.
 - RViz opens with the turtlebot3 robot and a lidar pointcloud of red dots displaying part of the world.</br>
+
 To exit the program, hit control-C.
 
 
@@ -115,4 +116,5 @@ Though the robot is able to plan its path in a foreign environment given an inti
 - config/costmap_common_params.yaml
 - config/global_costmap_params.yaml
 - config/local_costmap_params.yaml</br>
+
 After edits, the robot was found to be able to reach its goal every time, but further improvements could not be found to follow the plan in a smooth way.
