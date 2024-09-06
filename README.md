@@ -11,16 +11,7 @@ Robot Programming 2023-24
 
 
 ### Abstract
-
-This program controls a mobile robot in ROS and displays simple systems. The program is able to show:
-- a map (received from the map server)
-- laser scans
-- mobile bases (as a circle)
-All items are displayed according to their transform
-- particles of localization
- The program is able to issue
- issue /initialpose message, to initialize the localizer
- and /move_base/goal messages to set a planner destination
+This ROS Noetic catkin package controls a mobile robot and displays simple systems. It displays a turtlebot3 robot (in Gazebo + RViz), displays a turtlebot3 world (in Gazebo), displays the robot's perception of the world through lidar (RViz), and gives the user the ability to control the linear and angular movements of the robot. After this initialization, the package enables the robot to map an unkown world, localize in that world, and develop a plan to travel from an intial position to a goal destination.
 
 
 
@@ -44,53 +35,84 @@ The following Git repositories were used in part or fully integrated into this p
 
 ### Methods and Results
 
-The following section is divided into the basic parts of the program (initialization, mapping, localization, planning). It describes how to compile, run, and test. Later steps can only be accomplished if prior steps were completed successfully.
+The following section is divided into the basic parts of the program (initialization, mapping, localization, planning). It describes how to compile, run, and test. Later steps can only be accomplished if prior steps were completed successfully. All parts use ROS Noetic on a computer running Ubuntu 20.04.
 
-#### INITIALIZATION: download code, compile with catkin, view robot and world in Gazebo, view robot and lidar sensor data in RViz, make the robot move
 
+
+#### INITIALIZATION
+
+Install the ROS navigation stack. Then, make a folder to be a catkin workspace (named *catkin_ws* in this example) and a folder to be a catkin package (named *rviz_demo* in this example). If you already have a catkin workspace, you can use that folder instead of a new one named *catkin_ws*.
 ```
-mkdir -p catkin_ws/src
+sudo apt install ros-noetic-navigation
+mkdir -p ~/catkin_ws/src/rviz_demo
+```
+Download all files from this Github and place them into the *rviz_demo* folder. Build the catkin workspace with the following code.
+```
+cd ~/catkin_ws
+catkin_make
+```
+Open the file *~/.bashrc* and place the following two lines of code at the bottom.
+```
+export GAZEBO_RESOURCE_PATH=$GAZEBO_RESOURCE_PATH:~/catkin_ws/src/rviz_demo/
+source ~catkin_ws/devel/setup.bash
+```
+Save and exit the *~/.bashrc* file to launch your first program.
+```
+source ~/.bashrc
+cd ~/catkin_ws
 roslaunch rviz_demo core.launch world:="worlds/turtlebot3_world.world"
 ```
+Expected output:
+- Gazebo opens with the turtlebot3 robot and the turtlebot3 world.
+- rqt_robot_steering window opens, and you can see the robot move in the world as you change its linear and angular speed.
+- RViz opens with the turtlebot3 robot and a lidar pointcloud of red dots displaying part of the world.
+To exit the program, hit control-C.
+
+
 
 #### MAPPING
+Open two terminals. In one of them launch the mapping program.
+```
+roslaunch rviz_demo create_map.launch world:="worlds/turtlebot3_world.world"
+```
+While visualizing the robot in RViz, drive it around in order to build a map of the environment. Keep driving until the map is complete and looks similar to the world in Gazebo. When finished mapping the world, run the following line of code in the second terminal. After running this code, you can end both programs with control-C.
+```
+cd ~/catkin_ws/src/rviz_demo/maps
+rosrun map_server map_saver -f map1
+```
+Expected output:
+- Newly created *map1.yaml* and *map1.pgm* in the *~/catkin_ws/src/rviz_demo/maps/* folder.
+
+
 
 #### LOCALIZATION
+Launch the localization program. Replace *<path-to-home-folder>* with whatever is returned in Terminal when you run *cd;pwd*.
+```
+roslaunch rviz_demo localize.launch world:="worlds/turtlebot3_world.world" map="<path-to-home-folder>/catkin_ws/src/rviz_demo/maps/map1.yaml"
+```
+Look at the position of the robot in Gazebo. Open RViz and use the green 2D Pose Estimate arrow to give the robot an intial estimation of its location and direction in the map. Use the rqt_robot_steering window to move the robot around until the red Pose Array arrows converge to a smaller cluster of estimations.
+Expected output:
+- Robot correctly estimates its location in RViz given the map and its sensor readings.
 
 #### PLANNING
+Open two terminals. In one of them launch the planning program.
+```
+roslaunch rviz_demo planning.launch world:="worlds/turtlebot3_world.world" map:="<path-to-home-folder>/catkin_ws/src/rviz_demo/maps/map1.yaml
+```
+Localize the robot in the same way that you did in the *LOCALIZATION* section. Once the robot is localized, hide the Pose Array arrows by clicking the small triangle on the far left side of the RViz window to open the *Displays* panel and then unselect the box next to Pose Array. Stay in RViz and use the pink 2D Nav Goal arrow to give the robot a goal destination. Watch the robot as it plans out its path and then follows the line (it may skew from the path but will eventually make it to the goal) to the goal destination. Run the following line of code in the second terminal to send the robot a goal state 1 meter in front of its current position through a cpp program.
+```
+cd ~
+./catkin_ws/devel/lib/rviz_demo/simple_navigation_goals
+```
+Expected output:
+- Robot reaches goal position when given by the user with the 2D Nav Goal arrow.
+- Robot reaches goal position when given by the simple_navigation_goals executable.
 
-
-
-### Discussion
-OPPORTUNITIES FOR IMPROVEMENT AND PROBLEMS
 
 ### Conclusion
-SUMMARY OF WHAT I ACHIEVED
-
-### References and Appendices
-
-How to compile:
-- create catkin_ws
-- download into src folder
-- download dependencies
-- place the following two lines of code at the bottom of ~/.bashrc
-- export GAZEBO_RESOURCE_PATH=$GAZEBO_RESOURCE_PATH:<path-to-ws>/src/rviz_demo/
-- source <path-to-ws>/devel/setup.bash
-- source ~/.bashrc
-- catkin_make
-
-Goals to run and test:
-- displaying the robot (in Gazebo + RViz), world (in Gazebo), and robot's perception of the world through lidar (RViz), and making the robot move
-- putting the robot in an unkown world and collecting lidar data as the robot moves to create an internal map of the world
-- localizing the robot in the world by using amcl and its pre-built map
-- sending a desired goal position to the robot, which it must navigate in the world using only the map and lidar sensor data
-
-How to run:
-- roslaunch rviz_demo create_map.launch world:="worlds/turtlebot3_world.world"
-- before closing rosrun map_server map_saver -f MAP_NAME
-- roslaunch rviz_demo localize.launch world:="worlds/turtlebot3_world.world" map:="<path-to-ws>/src/rviz_demo/maps/MAP_NAME.yaml
-- roslaunch rviz_demo planning.launch world:="worlds/turtlebot3_world.world" map:="<path-to-ws>/src/rviz_demo/maps/MAP_NAME.yaml
-- run the ./bin file
-
-How to test:
-- Does the robot follow the line?
+Though the robot is able to plan its path in a foreign environment given an intial position and a goal position, it does not follow the path very well. Significant time was invested to editing the path planning parameters in the following files.
+- config/base_local_planner_params.yaml
+- config/costmap_common_params.yaml
+- config/global_costmap_params.yaml
+- config/local_costmap_params.yaml
+After edits, the robot was found to be able to reach its goal every time, but further improvements could not be found to follow the plan in a smooth way.
