@@ -65,7 +65,7 @@ roslaunch rviz_demo core.launch world:="worlds/turtlebot3_world.world"
 Expected output:
 - Gazebo opens with the turtlebot3 robot and the turtlebot3 world.
 - rqt_robot_steering window opens, and you can see the robot move in the world as you change its linear and angular speed.
-- RViz opens with the turtlebot3 robot and a lidar pointcloud of red dots displaying part of the world.
+- RViz opens with the turtlebot3 robot and a lidar pointcloud of red dots displaying part of the world.</br>
 To exit the program, hit control-C.
 
 
@@ -90,7 +90,7 @@ Launch the localization program. Replace *<path-to-home-folder>* with whatever i
 ```
 roslaunch rviz_demo localize.launch world:="worlds/turtlebot3_world.world" map="<path-to-home-folder>/catkin_ws/src/rviz_demo/maps/map1.yaml"
 ```
-Look at the position of the robot in Gazebo. Open RViz and use the green 2D Pose Estimate arrow to give the robot an intial estimation of its location and direction in the map. Use the rqt_robot_steering window to move the robot around until the red Pose Array arrows converge to a smaller cluster of estimations.
+Look at the position of the robot in Gazebo. Open RViz and use the green 2D Pose Estimate arrow to give the robot an intial estimation of its location and direction in the map. Use the rqt_robot_steering window to move the robot around until the red Pose Array arrows converge to a smaller cluster of estimations.</br>
 Expected output:
 - Robot correctly estimates its location in RViz given the map and its sensor readings.
 
@@ -114,5 +114,5 @@ Though the robot is able to plan its path in a foreign environment given an inti
 - config/base_local_planner_params.yaml
 - config/costmap_common_params.yaml
 - config/global_costmap_params.yaml
-- config/local_costmap_params.yaml
+- config/local_costmap_params.yaml</br>
 After edits, the robot was found to be able to reach its goal every time, but further improvements could not be found to follow the plan in a smooth way.
